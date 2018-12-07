@@ -27,8 +27,8 @@ def part1():
                 guards[id][m] += 1
                 guards_total[id] += 1
 
-    most_sleepy_guard_id, _ = sorted(guards_total.items(), key=lambda g:g[1], reverse=True)[0]
-    most_sleepy_minute_of_most_sleepy_guard, _ = sorted(guards[most_sleepy_guard_id].items(), key=lambda m:m[1], reverse=True)[0]
+    most_sleepy_guard_id = max(guards_total, key=guards_total.get)
+    most_sleepy_minute_of_most_sleepy_guard = max(guards[most_sleepy_guard_id], key=guards[most_sleepy_guard_id].get)
     print(most_sleepy_guard_id * most_sleepy_minute_of_most_sleepy_guard)
 
 def part2():
@@ -47,7 +47,7 @@ def part2():
             for m in range(sleepy_time.minute, date.minute):
                 guards[(id, m)] += 1
 
-    (most_sleepy_guard_id, most_sleepy_minute), _= sorted(guards.items(), key=lambda g: g[1], reverse=True)[0]
+    most_sleepy_guard_id, most_sleepy_minute = max(guards, key=guards.get)
     print(most_sleepy_guard_id * most_sleepy_minute)
 
 part2()
